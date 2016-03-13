@@ -1,0 +1,57 @@
+ 
+
+
+<div ng-if="$root.dataLoading" class="flyover">
+    <div class="mask"></div>
+    <div class="alert alert-loading">
+        <img src="img/loading1.gif"/>
+    </div>
+</div>
+
+
+<div ng-show="$root.lock" class="page page-lock" ng-controller="LockScreenCtrl">
+    <div class="lock-centered clearfix">
+        <div class="lock-container">
+
+            <section class="lock-box">
+                <div class="lock-user">{{$root.name}}</div>
+                <div class="lock-img"><img src="{{$root.photo}}" alt=""></div>
+                <div class="lock-pwd">
+                    <form ng-submit="check()">
+                        <div class="form-group">
+                            <input type="password" placeholder="Password" ng-model = "password" class="form-control">
+                            <a   class="btn-submit" ng-click="check()">
+                                <i class="fa fa-arrow-right"></i>
+                            </a>
+                        </div>
+                    </form>
+                </div>            
+            </section>
+        </div>
+    </div>
+</div>
+
+
+<div ng-hide="$root.lock" ng-controller="IdleCtrl" >
+     
+    <div data-ng-show="isLogin()" data-ng-cloak class="no-print">
+        <section data-ng-include=" 'views/header.html'" id="header" class="top-header"></section>
+        <aside data-ng-include=" 'views/nav.html'" id="nav-container"></aside>
+    </div>
+    <section  >
+    </section>
+
+
+
+    <div class="panel-body" id="content" ng-controller="UserpageController">
+        <div class="col-md-12 alert alert-danger" ng-if="$root.errmsg">
+            {{errmsg}}
+        </div>
+         <div ng-include="contentarea"></div>
+    </div>
+
+</div>
+
+
+
+

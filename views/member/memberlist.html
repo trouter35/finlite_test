@@ -1,0 +1,65 @@
+<div ng-controller="MemberListController as mc">
+    <div class="col-md-12">
+       
+        <section class="panel panel-default">
+            <div class="panel-heading"><strong><span class="fa fa-th"></span> <span data-i18n="member"></span></strong></div>
+            <div class="panel-body">
+                <div class=" row form-inline">
+                    <div class="col-md-4 selectContainer" ng-show="$root.showMember">
+                        <ui-select ng-model="selectedOption" theme="select2" style="min-width: 300px; " ng-disabled="disabled" ng-change="bWiseCenter(selectedOption, status)" >
+                            <ui-select-match placeholder="Select or search branch">{{selectedOption.Name}}</ui-select-match>
+                            <ui-select-choices repeat="office in offices | propsFilter: {Code: $select.search, Name: $select.search}" >
+                                <div ng-bind-html="office.Name | highlight: $select.search"></div>
+                                <small>
+                                    Code: <span ng-bind-html="''+office.Code | highlight: $select.search"></span>
+                                </small>
+                            </ui-select-choices>
+                        </ui-select>
+                    </div>
+
+                    <div class="col-md-4 selectContainer" ng-show="$root.showMember">
+                        <ui-select ng-model="center" theme="select2" style="min-width: 300px; " ng-disabled="disabled" ng-change="CenterWiseMember(selectedOption,center, status)" >
+                            <ui-select-match placeholder="Select or search center">{{center.CenterName}}</ui-select-match>
+                            <ui-select-choices repeat="center in $root.centers | propsFilter: {CenterCode: $select.search, CenterName: $select.search}" >
+                                <div ng-bind-html="center.CenterName | highlight: $select.search"></div>
+                                <small>
+                                    Center Code: <span ng-bind-html="''+center.CenterCode | highlight: $select.search"></span>
+                                </small>
+                            </ui-select-choices>
+                        </ui-select>
+                       
+                    </div>
+                     <div class="col-md-4 selectContainer">
+                        <select ng-model="status" class="form-control"  ng-change="CenterWiseMember(selectedOption,center, status)" required>
+                            <option value="0" ng-selected="true">All</option>
+                            <option value="ACTIVE" >ACTIVE</option>
+                            <option value="DROPOUT" >DROPOUT</option>
+                            <option value="PASSIVE" >PASSIVE</option>
+                        </select>
+                        <!--  <button class=" btn btn-primary pull-right" ng-show="entry" ng-click="CreateMember(0)">
+                            <i class="icon-plus icon-white"></i> Create Member
+                        </button> -->
+                    </div>
+                </div>
+                <table ng-table="mc.tableParams" class="table" show-filter="true">
+                    <tr style="cursor: pointer;" ng-repeat="member in $data" class="{{member.Status}}" ng-click="memberProfile(member.MemberID, center, selectedOption)">
+                        <td title="'Code'" filter="{ MemberCode: 'text'}" sortable="'MemberCode'" > {{member.MemberCode}}</td>
+                        <td title="'First Name'" filter="{ FirstName: 'text'}" sortable="'FirstName'">{{member.FirstName}}</td>
+                        <td title="'Last Name'" filter="{ LastName: 'text'}" sortable="'LastName'">{{member.LastName}}</td>
+                        <td title="'Spouse/Father'" filter="{ SpouseFather: 'text'}" sortable="'SpouseFather'"> {{member.SpouseFather}}</td>
+                        <td title="'Father In Law'" filter="{ FatherInLaw: 'text'}" sortable="'FatherInLaw'">{{member.FatherInLaw}}</td>
+                        <td title="'VDC'" filter="{ VdcName: 'text'}" sortable="'VdcName'">{{member.VdcName}}</td>
+                        <td title="'Status'" filter="{ Status: 'text'}" sortable="'Status'">{{member.Status}}</td>
+                        
+                    </tr>
+                </table>
+                <ul class="list-group">
+                    <li class="list-group-item">
+                        <span class="badge badge-danger">{{mc.tableParams.total()}}</span>
+                        Total Record 
+                    </li>
+                </ul>
+            </div>
+        </section>
+    </div>
+</div>

@@ -1,0 +1,24 @@
+<div ng-controller="BListController as bc">
+    <div class="col-md-12">
+        <section class="panel panel-default">
+            <div class="panel-heading"><strong><span class="fa fa-th"></span> <span data-i18n="office"></span></strong></div>
+            <div class="panel-body">
+                <table ng-table="bc.tableParams" class="table" show-filter="true">
+                    <tr style="cursor: pointer;" ng-repeat="office in $data" ng-click="branchList(office.ID,office.Name )">
+                        <td title="'Code'" filter="{ Code: 'text'}" sortable="'Code'" > {{office.Code}}</td>
+                        <td title="'Name'" filter="{ Name: 'text'}" sortable="'Name'">{{office.Name}}</td>
+                        <td title="'Location'" filter="{ Location: 'text'}" sortable="'Location'"> {{office.Location}}</td>
+                        <td title="'Phone No.'" filter="{ PhoneNo: 'text'}" sortable="'PhoneNo'">{{office.PhoneNo}}</td>
+                        <td title="'Email'" filter="{ Email: 'text'}" sortable="'Email'">{{office.Email}}</td>
+                    </tr>
+                </table>
+                <ul class="list-group">
+                    <li class="list-group-item">
+                        <span class="badge badge-danger">{{bc.tableParams.total()}}</span>
+                        Total Record 
+                    </li>
+                </ul>
+            </div>
+        </section>
+    </div>
+</div>

@@ -1,0 +1,27 @@
+<div data-ng-controller="ContentAreaController">
+ 
+
+    <div class="row">
+        <div ng-if="createC === 'true'" ng-include="centerpage" ></div>
+        <div ng-if="setarea === 'true'" ng-include="arealist" ></div>
+        <div ng-if="setbranch === 'true'" ng-include="branchlist" ></div>
+        <div ng-if="setstaff === 'true'" ng-include="staffs" ></div>
+        <div ng-if="setcenter === 'true'" ng-include="centers" ></div>
+        <div ng-if="setmember === 'true'" ng-include="members" ></div>
+        <div ng-if="setvoucher === 'true'" ng-include="vouchers" ></div>
+        <div ng-if="vc === 'true'" ng-include="centerdetail" ></div>
+        <div ng-if="setprofile === 'true'" ng-include="profile" ></div>
+        <div ng-if="settasks === 'true'" ng-include="tasks" ></div>
+        <div ng-if="setareadash === 'true'" ng-include="areadetail" ></div>
+        <div ng-if="createmember === 'true'" ng-include="memberpage" ></div>
+        <div ng-if="setreport === 'true'" ng-include="report" ></div>
+        <div ng-if="settimeline === 'true'" ng-include="timeline" ></div>
+        <div ng-if="setcentermember === 'true'" ng-include="centermember" ></div>
+        <div ng-if="setcentersetting === 'true'" ng-include="centersetting" ></div>
+        <div ng-if="mempro === 'true'" ng-include="memberprofile" ></div>
+        <div ng-if="meetSchedule === 'true'" ng-include="scheduleMeeting" ></div>
+        <div ng-if="misR === 'true'" ng-include="MisR" ></div>
+     
+        <div ng-if="misR === '' && meetSchedule === '' && mempro === '' && setcentersetting === '' && setcentermember === '' && settimeline === '' && setreport === '' && createmember === '' && setareadash === '' && settasks === '' && vc === '' && setprofile === '' && createC === '' && setarea === '' && setbranch === '' && setstaff === '' && setcenter === '' && setmember === '' && setvoucher === ''" ng-include="dashboard" ></div>
+    </div>  
+</div>

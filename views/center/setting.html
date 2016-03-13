@@ -1,0 +1,112 @@
+<div ng-controller="CenterSettingCtrl as cs">
+    <div class="col-md-12">
+        <div class="col-md-6 col-sm-6">
+            <i class="fa fa-circle  statusactive"></i>
+            <i class="fa fa-map-marker"></i>
+            <strong class="ng-binding"> {{center}} </strong>
+            <small class="ng-binding">
+                <i class="fa fa-building-o"></i> {{office}}
+            </small>
+        </div>
+    </div>
+    <div class="col-md-12">
+        <section class="panel panel-default">
+            <div class="panel-heading"><strong><span class="fa fa-th"></span>Center Setting</strong></div>
+            <div class="panel-body">
+
+                <form class="form-horizontal" role="form">
+                    <div class="col-md-12 pull-left" >
+                        <label class="radio-inline">
+                            <input type="radio" name="saving" ng-class="{active: selectedTab === 1}" ng-click="selectedTab = 1;" ng-model="setradio" value="1"><strong>Saving </strong>
+                        </label>
+                        <label class="radio-inline">
+                            <input type="radio" name="fund" ng-class="{active: selectedTab === 2}" ng-click="selectedTab = 2;" ng-model="setradio" value="2"><strong>Fund</strong>
+                        </label>
+                        <label class="radio-inline">
+                            <input type="radio" name="income" ng-class="{active: selectedTab === 3}" ng-click="selectedTab = 3;" ng-model="setradio" value="3"><strong>Income</strong>
+                        </label>
+
+                    </div>
+
+                </form>  
+                <br><br>
+
+                <div class="col-md-12">
+                    <div class="col-md-6" ng-show="selectedTab === 1">
+                        <select ng-model="selectedSaving"
+                                ng-options="st.SavingTypeID as st.SavingType for st in SavingType" value="{{st.SavingTypeID}}"
+                                class="form-control">
+                        </select>
+
+                    </div>
+                    <div class="col-md-6" ng-show="selectedTab == 2">
+                        <select ng-model="selectedFund"
+                                ng-options="ft.InsuranceTypeID as ft.InsuranceType for ft in FundType" value="{{ft.InsuranceTypeID}}"
+                                class="form-control">
+                        </select>
+
+                    </div>
+                    <div class="col-md-6" ng-show="selectedTab == 3">
+                        <select ng-model="selectedFee"
+                                ng-options="it.IncomeTypeID as it.IncomeType for it in FeeType" value="{{it.IncomeTypeID}}"
+                                class="form-control">
+                        </select>
+
+                    </div>
+                    <div class="col-sm-4 form-group inline">
+                        <label class="col-sm-4">Amount</label>
+                        <div class="col-sm-8">
+                            <input type="text" ng-model = "Amount" class="lenManage form-control" />
+                        </div>
+                    </div>
+                    <button type="submit" class="btn btn-success pull-left" ng-click="Add(selectedTab,Amount )">Add</button>
+                </div>
+                <div class="col-md-12" ng-show="selectedTab === 1"> 
+                    <table ng-table="cs.tableParams" class="table " show-filter="true">
+                        <tr style="cursor: pointer;" ng-repeat="saving in $data" >
+                            <td title="'Type'"  sortable="'SavingType'" > {{saving.SavingType}}</td>
+                            <td title="'Amount'"  sortable="'Amount'">{{saving.Amount}}</td>
+                            <td title="'Action'"  >
+                                <button type="submit" class="btn btn-danger" confirmed-click="removeRow('SAVING', saving.TypeID)"  ng-confirm-click="Are you sure to Delete?"><span class="fa fa-times"></span></button>
+                                <button type="button" class="btn btn-primary" ng-click="editRow('SAVING', saving.TypeID, saving.Amount)"><span class="fa fa-edit"></span></button>
+                            </td>
+
+                        </tr>
+                    </table>
+                </div>
+                <div class="col-md-12" ng-show="selectedTab == 2">
+                    <table ng-table="cs.tableParams1" class="table " show-filter="true">
+                        <tr style="cursor: pointer;" ng-repeat="fund in $data" >
+                            <td title="'Type'"  sortable="'SavingType'" > {{fund.InsuranceType}}</td>
+                            <td title="'Amount'"  sortable="'Amount'">{{fund.Amount}}</td>
+                            <td title="'Action'"  >
+                                <button type="submit" class="btn btn-danger" ng-click="removeRow('FUND', fund.TypeID)"><span class="fa fa-times"></span></button>
+                                <button type="button" class="btn btn-primary" ng-click="editRow('FUND', fund.TypeID, fund.Amount)"><span class="fa fa-edit"></span></button>
+                            </td>
+
+                        </tr>
+                    </table>
+                </div>
+                <div class="col-md-12" ng-show="selectedTab == 3">
+                    <table ng-table="cs.tableParams2" class="table " show-filter="true">
+                        <tr style="cursor: pointer;" ng-repeat="fee in $data" >
+                            <td title="'Type'"  sortable="'SavingType'" > {{fee.IncomeType}}</td>
+                            <td title="'Amount'"  sortable="'Amount'">{{fee.Amount}}</td>
+                            <td title="'Action'"  >
+                                <button type="submit" class="btn btn-danger" ng-click="removeRow('FEE', fee.TypeID)"><span class="fa fa-times"></span></button>
+                                <button type="button" class="btn btn-primary" ng-click="editRow('FEE', fee.TypeID, fee.Amount)"><span class="fa fa-edit"></span></button>
+                            </td>
+                        </tr>
+                    </table>
+                </div>
+            </div>
+        </section>
+    </div>
+
+
+
+</div>
+
+<script>
+            lenManage();
+</script>

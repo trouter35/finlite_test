@@ -1,0 +1,38 @@
+<div ng-controller="StaffListController as sc">
+    <div class="col-md-12">
+        <section class="panel panel-default">
+            <div class="panel-heading"><strong><span class="fa fa-th"></span> <span data-i18n="staff"></span></strong></div>
+
+            <div class="panel-body">
+                <div class="col-md-5 selectContainer">
+                    <ui-select ng-model="selectedOption" theme="select2" style="min-width: 300px; " ng-disabled="disabled" ng-change="bWiseStaff(selectedOption.ID)" >
+                        <ui-select-match placeholder="Select or search branch">{{selectedOption.Name}}</ui-select-match>
+                        <ui-select-choices repeat="office in offices | propsFilter: {Code: $select.search, Name: $select.search}" >
+                            <div ng-bind-html="office.Name | highlight: $select.search"></div>
+                            <small>
+
+                                Code: <span ng-bind-html="''+office.Code | highlight: $select.search"></span>
+                            </small>
+                        </ui-select-choices>
+                    </ui-select>
+                </div>
+                <table ng-table="sc.tableParams" class="table" show-filter="true">
+                    <tr style="cursor: pointer;" ng-repeat="staff in $data"  ng-click="staffProfile(staff.StaffID)">
+                        <td title="'Code'" filter="{ Code: 'text'}" sortable="'Code'" > {{staff.Code}}</td>
+                        <td title="'Name'" filter="{ FirstName: 'text'}" sortable="'FirstName'">{{staff.FirstName + " " + staff.LastName}}</td>
+                        <td title="'Office'" filter="{ Office: 'text'}" sortable="'Office'"> {{staff.Name}}</td>
+                        <td title="'Mobile'" filter="{ Mobile: 'text'}" sortable="'Mobile'">{{staff.Mobile}}</td>
+                        <td title="'Email'" filter="{ Email: 'text'}" sortable="'Email'">{{staff.Email}}</td>
+                   </tr>
+                </table>
+                <ul class="list-group">
+                    <li class="list-group-item">
+                        <span class="badge badge-danger">{{sc.tableParams.total()}}</span>
+                        Total Record 
+                    </li>
+
+                </ul>
+            </div>
+        </section>
+    </div>
+</div>

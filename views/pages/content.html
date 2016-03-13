@@ -1,0 +1,7 @@
+<div ng-controller="ContentCtrl">
+    <div data-ng-show="isLogin()" data-ng-cloak class="no-print">
+        <section data-ng-include=" 'views/header.html'" id="header" class="top-header"></section>
+        <aside data-ng-include=" 'views/nav.html'" id="nav-container"></aside>
+    </div>
+    <div ng-include="userpage"></div>
+</div>

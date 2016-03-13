@@ -1,0 +1,270 @@
+<div  ng-controller="CreateEditCenterController">
+    <div class="col-md-12">
+        <i class="fa fa-circle  statusactive"></i>
+        <i class="fa fa-map-marker"></i>
+        <strong class="ng-binding"> {{office}} </strong>
+
+    </div>
+    <div class="col-md-12">
+        <section class="panel panel-default">
+            <div class="panel-heading"><strong ng-show="$root.create"><span class="fa fa-th"></span> 
+                    Create Center</strong>
+                <strong ng-show="$root.edit"><span class="fa fa-th"></span> 
+                    Edit Center</strong>
+            </div>
+            <div class="panel-body">
+                <form class="form-horizontal" role="form">
+                    <div class="col-md-3">
+                        <input type='number' id="cid"  ng-model="center.CenterID" hidden/>
+
+                        <div class="form-group" ng-class="{ 'has-error': userForm.code.$invalid }">
+                            <label for="code" class="col-sm-4 control-label">Code</label>
+                            <div class="col-sm-8">
+                                <input class="lenManage form-control" type="text" min="1" max="999" maxlength="3" name="code" ng-model="center.CenterCode" required auto-focus/>
+                            </div>
+                        </div>
+
+                        <div class="form-group" ng-class="{ 'has-error': userForm.name.$invalid }">
+                            <label for="name" class="col-sm-4 control-label">Name</label>
+                            <div class="col-sm-8">
+                                <input type="text" class="form-control capitalize" id="name" name="name" ng-model="center.CenterName" required > 
+                            </div>
+                        </div>
+                        <div class="form-group" ng-class="{'has-error': userForm.fdate.$invalid }">
+                            <label for="name" class="col-sm-4 control-label">Est. Date</label>
+
+                            <div class="col-sm-8">
+                                <input type="text" id="nepaliDate" class="nepali-calendar form-control" name="fdate" ng-model="center.NFormedDate" data-mask="____/__/__" placeholder="Date" value="" required/> </div>
+                            <input type="text" id="fdateEnglish"  ng-model="center.EFormedDate" value="" hidden/> 
+                        </div>
+                        <div class="form-group" ng-class="{ 'has-error': userForm.type.$invalid }">
+                            <label for="type" class="col-sm-4 control-label">Type</label>
+                            <div class="col-sm-8">
+                                <select ng-model="center.MeetingType"  id="mtype" class="form-control" required>
+                                    <option value="">Select</option>
+                                    <option value="1">Fortnight</option>
+                                    <option value="2">Monthly</option>
+                                </select>
+                            </div>
+                        </div>
+                        <div class="form-group" ng-class="{ 'has-error': userForm.day.$invalid }">
+                            <label for="day" class="col-sm-4 control-label">Day</label>
+                            <div class="col-sm-8">
+                                <select ng-model="center.MeetingDay" id="mday" class="form-control" required>
+                                    <option value="">Select</option>
+                                    <option value="1">Sunday</option>
+                                    <option value="2">Monday</option>
+                                    <option value="3">Tuesday</option>
+                                    <option value="4">Wednesday</option>
+                                    <option value="5">Thursday</option>
+                                    <option value="6">Friday</option>
+                                    <option value="7">Saturday</option>
+                                </select>
+                            </div>
+                        </div>
+                        <div class="form-group" ng-class="{ 'has-error': userForm.time.$invalid }">
+                            <label for="time" class="col-sm-4 control-label">Time</label>
+                            <div class="col-sm-8">
+                                <select ng-model="center.MeetingTime" id="metime" class="form-control" required>
+                                    <option value="">Select</option>
+                                    <option value="07:00">07:00</option>
+                                    <option value="07:15">07:15</option>
+                                    <option value="07:30">07:30</option>
+                                    <option value="07:45">07:45</option>
+                                    <option value="08:00">08:00</option>
+                                    <option value="08:15">08:15</option>
+                                    <option value="08:30">08:30</option>
+                                    <option value="08:45">08:45</option>
+                                    <option value="09:00">09:00</option>
+                                    <option value="09:15">09:15</option>
+                                    <option value="09:30">09:30</option>
+                                    <option value="09:45">09:45</option>
+                                    <option value="10:00">10:00</option>
+                                    <option value="10:15">10:15</option>
+                                </select>
+                            </div>
+                        </div>
+
+                    </div>
+
+                    <div class="col-md-3">
+
+                        <div class="form-group" ng-class="{'has-error': userForm.zone.$invalid }">
+                            <label for="zone" class="col-sm-4 control-label">Zone</label> 
+                            <div class="col-sm-8">
+                                <ui-select  ng-model="center.zone" theme="selectize" ng-disabled="disabled"  ng-change="ZoneChanged(center.zone.ZoneID)" required>
+                                    <ui-select-match  placeholder="Select or search">{{center.zone.ZoneName}}
+
+                                    </ui-select-match>
+                                    <ui-select-choices repeat="zone in zones | filter: $select.search">
+                                        <span ng-bind-html="zone.ZoneName | highlight: $select.search"></span>
+
+                                    </ui-select-choices>
+                                </ui-select>
+                            </div> </div>
+
+                        <div class="form-group" ng-class="{'has-error': userForm.district.$invalid }">
+                            <label for="district" class="col-sm-4 control-label">District</label>
+                            <div class="col-sm-8">
+
+                                <ui-select ng-model="center.district" theme="selectize" ng-disabled="disabled"  ng-change="DistrictChanged(center.district.DistrictID)" required>
+                                    <ui-select-match placeholder="Select or search">{{center.district.DistrictName}}
+
+                                    </ui-select-match>
+                                    <ui-select-choices repeat="district in districts | filter: $select.search">
+                                        <span ng-bind-html="district.DistrictName | highlight: $select.search"></span>
+
+                                    </ui-select-choices>
+                                </ui-select>
+
+                            </div> </div>
+
+
+                        <div class="form-group" ng-class="{'has-error': userForm.vdc.$invalid }">
+                            <label for="vdc" class="col-sm-4 control-label">VDC</label>
+                            <div class="col-sm-8">  
+                                <ui-select ng-model="center.vdc" theme="selectize" ng-disabled="disabled"  required>
+                                    <ui-select-match placeholder="Select or search">{{center.vdc.VdcName}}
+
+                                    </ui-select-match>
+                                    <ui-select-choices repeat="vdc in vdcs | filter: $select.search">
+                                        <span ng-bind-html="vdc.VdcName | highlight: $select.search"></span>
+
+                                    </ui-select-choices>
+                                </ui-select>
+                            </div> </div>
+
+
+
+                        <div class="form-group" ng-class="{'has-error': userForm.wardno.$invalid }">
+                            <label for="wardno" class="col-sm-4 control-label">Ward No</label>
+                            <div class="col-sm-8">
+                                <input class="lenManage form-control" type="text" id="wardno"  ng-model="center.WardNo" required/>
+                            </div>
+                        </div>    
+
+
+                        <div class="form-group" ng-class="{'has-error': userForm.place.$invalid }">
+                            <label for="place" class="col-sm-4 control-label">Place</label>
+                            <div class="col-sm-8">
+                                <input type="text" id="place"  ng-model="center.MeetingPlace" class="capitalize form-control" required/> 
+                            </div>  
+                        </div>
+
+                        <div class="form-group" ng-class="{'has-error': userForm.distance.$invalid }">
+                            <label for="distance" class="col-sm-4 control-label">Distance in Meter</label>
+                            <div class="col-sm-8">
+                                <input type="text" id="place" ng-model="center.CenDis" class="lenManage field-long form-control" required/>
+                            </div>   </div>
+
+                    </div>
+
+                    <div class="col-md-3">
+                        <div class="form-group" ng-class="{'has-error': userForm.pgt.$invalid }">
+                            <label for="pgt" class="col-sm-4 control-label">PGT By</label>
+                            <div class="col-sm-8">
+                                <ui-select  ng-model="center.PgtBy" theme="selectize" ng-disabled="disabled"   required>
+                                    <ui-select-match  placeholder="Select or search">{{center.PgtBy.FirstName + center.PgtBy.LastName}}  
+
+                                    </ui-select-match>
+                                    <ui-select-choices repeat="staff in staffs | filter: $select.search">
+                                        <span ng-bind-html="staff.Code +' (' + staff.FirstName +' ' + staff.LastName + ')'  | highlight: $select.search"></span>
+
+                                    </ui-select-choices>
+                                </ui-select>
+                            </div>  
+                        </div>
+
+                        <div class="form-group" ng-class="{ 'has-error': userForm.grt.$invalid }">
+                            <label for="grt" class="col-sm-4 control-label">GRT By</label>
+                            <div class="col-sm-8">
+                                <ui-select  ng-model="center.GrtBy" theme="selectize" ng-disabled="disabled"   required>
+                                    <ui-select-match  placeholder="Select or search">{{center.GrtBy.FirstName + center.GrtBy.LastName}}  
+
+                                    </ui-select-match>
+                                    <ui-select-choices repeat="staff in staffs | filter: $select.search">
+                                        <span ng-bind-html="staff.Code +' (' + staff.FirstName +' ' + staff.LastName + ')'  | highlight: $select.search"></span>
+
+                                    </ui-select-choices>
+                                </ui-select>
+                            </div>
+                        </div>
+
+                        <div class="form-group" ng-class="{ 'has-error': userForm.approved.$invalid }">
+                            <label for="approved" class="col-sm-4 control-label">Approved By</label>
+                            <div class="col-sm-8">
+                                <ui-select  ng-model="center.ApprovedBy" theme="selectize" ng-disabled="disabled"   required>
+                                    <ui-select-match  placeholder="Select or search">{{center.ApprovedBy.FirstName + center.ApprovedBy.LastName}}  
+
+                                    </ui-select-match>
+                                    <ui-select-choices repeat="staff in staffs | filter: $select.search">
+                                        <span ng-bind-html="staff.Code +' (' + staff.FirstName +' ' + staff.LastName + ')'  | highlight: $select.search"></span>
+
+                                    </ui-select-choices>
+                                </ui-select>
+                            </div>
+                        </div>
+
+                        <div class="form-group" ng-class="{ 'has-error': userForm.chouse.$invalid }">
+                            <label for="chouse" class="col-sm-4 control-label">Center House?</label>
+                            <div class="col-sm-8">
+                                <input type="checkbox" ng-model="center.CenterHouse"  id="chouse" >
+                            </div>
+                        </div>
+
+                        <div class="form-group" ng-class="{ 'has-error': userForm.cdress.$invalid }">
+                            <label for="cdress" class="col-sm-4 control-label">Center Dress?</label>
+                            <div class="col-sm-8">
+                                <input type="checkbox" ng-model="center.CenterDress" id="cdress">
+                            </div>
+                        </div>
+
+                        <div class="form-group" ng-class="{ 'has-error': userForm.attreg.$invalid }">
+                            <label for="attreg" class="col-sm-4 control-label">Attendance Register?</label>
+                            <div class="col-sm-8">
+                                <input type="checkbox" ng-model="center.AttendanceRegister" id="attregister"> 
+                            </div>
+                        </div>
+
+                    </div> 
+
+                    <div class="col-md-3">
+                        <div class="form-group" ng-class="{ 'has-error': userForm.pgtdate.$invalid }">
+                            <label for="pgtdate" class="col-sm-4 control-label">Date</label>
+                            <div  class="col-sm-8">
+                                <input type="text"  id="nepaliDate1" class="nepali-calendar form-control" ng-model="center.NPgtDate"  data-mask="____/__/__" placeholder="Date" required/>
+                            </div>
+                        </div>
+
+                        <div class="form-group" ng-class="{ 'has-error': userForm.grtdate.$invalid }">
+                            <label for="grtdate" class="col-sm-4 control-label">Date</label>
+                            <div class="col-sm-8">
+                                <input type="text"  id="nepaliDate2" class="nepali-calendar form-control" ng-model="center.NGrtDate" data-mask="____/__/__"  placeholder="Date" value="" required/>
+                            </div>
+                        </div>
+
+                        <div class="form-group" ng-class="{ 'has-error': userForm.appdate.$invalid }">
+                            <label for="appdate" class="col-sm-4 control-label">Date</label>
+                            <div class="col-sm-8">
+                                <input type="text" id="nepaliDate3"  ng-model="center.NApprovedDate" data-mask="____/__/__" class="form-control nepali-calendar" placeholder="Date" value="" required/>
+                            </div>
+                        </div>
+
+                    </div>
+                    <button type="submit" ng-disabled="isDisabled"  class="btn btn-success pull-left" ng-click="Save(center)">Save</button>
+                </form>  
+            </div>
+        </section>
+    </div>
+</div>
+
+
+<script>
+    $(document).ready(function() {
+        $('.nepali-calendar').nepaliDatePicker();
+    });
+    lenManage();
+    Array.prototype.forEach.call(document.body.querySelectorAll("*[data-mask]"), applyDataMask);
+
+
+</script>

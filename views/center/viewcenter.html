@@ -1,0 +1,144 @@
+<div ng-controller="CenterDashboard">
+    <div class="col-md-12">
+        <div class="col-md-6 col-sm-6">
+            <i class="fa fa-map-marker"></i>
+            <strong class="ng-binding"> {{center}} </strong>
+            <small class="ng-binding">
+                <i class="fa fa-building-o"></i> {{office}}
+            </small>
+        </div>
+        <div class="col-md-6 col-sm-6">
+            <div class="dropdown  pull-right">
+                <button class="btn btn-primary dropdown-toggle" type="button" data-toggle="dropdown"><i class="fa fa-tasks"></i>
+                </button>
+                <ul class="dropdown-menu ">
+                    <li><a href="" ng-click="editCenter()" ><span data-i18n="">Edit Center</span></a></li>
+                    <li><a href="" ng-click="getMemberList()"><span data-i18n="">Member List</span></a></li>
+                    <li><a href="" ng-click="scheduleMeeting()"><span data-i18n="">Meeting Schedule</span></a></li>
+                    <li><a href="" ng-click=""><span data-i18n="">Change Staff</span></a></li>
+                    <li><a href="" ng-click=""><span data-i18n="">Transaction</span></a></li>
+                    <li><a href="" ng-click="Setting()"><span data-i18n="">Setting</span></a></li>
+                </ul>
+            </div>
+        </div>
+    </div>
+    <div class="row">
+        <div class="col-md-12">
+            <div class="col-md-8  col-sm-12">
+                <div class="col-md-6  col-sm-12">
+
+                    <div class="col-md-6 col-sm-12 panel panel-default" style="width: 100%; height: 305px;" >
+                        <div class="col-md-6 col-sm-12 panel-body" id='pie-saving' style="width: 100%; height: 305px;"></div>
+                    </div>
+                </div>
+                <div class="col-md-6  col-sm-12">
+
+                    <div class="col-md-6 col-sm-12 panel panel-default" style="width: 100%; height: 305px;">
+                        <div class="col-md-6 col-sm-12 panel-body" id='pie-loan' style="width: 100%; height: 305px;"></div>
+                    </div>
+                </div>
+
+            </div>
+            <div class="col-md-4  col-sm-12">
+                <section class="panel panel-default">
+                    <div class="panel-heading"><strong><span class="fa fa-th"></span> <span data-i18n="Detail"></span></strong></div>
+                    <div class="panel-info">
+                        <table class="table-minified">
+                            <tbody>
+                                <tr><th>&nbsp;Code: </th><td class="padded-td"> {{CenterCode}}</td></tr>
+                                <tr><th>&nbsp;Staff: </th><td> {{Staff}}</td></tr>
+                                <tr><th>&nbsp;Formed Date: </th><td> {{formedDate}}</td></tr>
+                                <tr><th>&nbsp;Meeting Time: </th><td> {{MeetingTime}}</td></tr>
+                                <tr><th>&nbsp;Meeting Type: </th><td> {{MeetingType}}</td></tr>
+                                <tr><th>&nbsp;Address: </th><td> {{zone}} - {{district}} - {{vdc}}</td></tr>
+                                <tr><th>&nbsp;Meeting Place: </th><td> {{MeetingPlace}}</td></tr>
+                                <tr><th>&nbsp;Distance: </th><td> {{CenDis}}</td></tr>
+                                <tr><th>&nbsp;PGT By: </th><td> {{PgtStaff}}</td></tr>
+                                <tr><th>&nbsp;GRT By: </th><td> {{GrtStaff}}</td></tr>
+                                <tr><th>&nbsp;Approved By: </th><td>{{ApproveStaff}}</td></tr>
+                                <tr><th>&nbsp;Chief: </th><td>{{CenterCheif}}</td></tr>
+                                <tr><th>&nbsp;Contact No: </th><td>{{ChiefContact}}</td></tr>
+                            </tbody>
+                        </table>
+                    </div>
+            </div>
+        </div>
+    </div>
+
+    <div class="col-md-12">
+        <div class="panel-body">
+            <div class="col-lg-6 col-sm-12">
+                <div class="panel widget bg-green">
+                    <div class="row row-table">
+                        <div class="col-xs-4 text-center bg-green-dark pv-lg">
+                            <em class="fa fa-rupee fa-3x"></em>
+                        </div>
+                        <div class="col-xs-8 pv-lg">
+                            <div class="h2 mt0">{{SavingTotal}}</div>
+                            <div class="text-uppercase"><span data-i18n="Saving"></span></div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="col-lg-6 col-sm-12">
+                <div class="panel widget bg-primary">
+                    <div class="row row-table">
+                        <div class="col-xs-4 text-center bg-primary-dark pv-lg">
+                            <em class="fa fa-rupee fa-3x"></em>
+                        </div>
+                        <div class="col-xs-8 pv-lg">
+                            <div class="h2 mt0">{{LoanTotal}}</div>
+                            <div class="text-uppercase"><span data-i18n="Loan"></span></div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="row">
+                <div class="col-lg-3 col-xsm-6">
+                    <div class="panel mini-box">
+                        <span class="box-icon bg-success">
+                            <i class="fa fa-users"></i>
+                        </span>
+                        <div class="box-info">
+                            <p class="size-h2">{{ActiveMember}}</p>
+                            <p class="text-muted"><span data-i18n="Members"></span></p>
+                        </div>
+                    </div>
+                </div>
+                <div class="col-lg-3 col-xsm-6">
+                    <div class="panel mini-box">
+                        <span class="box-icon bg-info">
+                            <i class="fa fa-rupee"></i>
+                        </span>
+                        <div class="box-info">
+                            <p class="size-h2">{{Borrower}}</p>
+                            <p class="text-muted"><span data-i18n="Borrowers"></span></p>
+                        </div>
+                    </div>
+                </div>
+                <div class="col-lg-3 col-xsm-6">
+                    <div class="panel mini-box">
+                        <span class="box-icon bg-warning">
+                            <i class="fa fa-arrow-circle-down"></i>
+                        </span>
+                        <div class="box-info">
+                            <p class="size-h2">{{DropMember}}</p>
+                            <p class="text-muted"><span data-i18n="Dropout"></span></p>
+                        </div>
+                    </div>
+                </div>
+                <div class="col-lg-3 col-xsm-6">
+                    <div class="panel mini-box">
+                        <span class="box-icon bg-danger">
+                            <i class="fa fa-archive"></i>
+                        </span>
+                        <div class="box-info">
+                            <p class="size-h2">{{Passive}}</p>
+                            <p class="text-muted"><span data-i18n="Passive"></span></p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>

@@ -1,0 +1,203 @@
+ 
+<div data-ng-controller="MemProfileCtrl as mc">
+
+    <div class="col-md-12">
+        <div class="col-md-6 col-sm-6">
+            <i class="fa fa-map-marker"></i>
+            <strong class="ng-binding"> {{center}} </strong>
+            <small class="ng-binding">
+                <i class="fa fa-building-o"></i> {{office}}
+            </small>
+        </div>
+        <div class="col-md-6 col-sm-6">
+            <div class="dropdown  pull-right">
+                <button class="btn btn-primary " type="button"  ng-click="editMember()"><i class="fa fa-edit"> Edit Member</i>
+                </button>
+            </div>
+        </div>
+    </div>
+
+    <div class="row">
+        <div class="col-md-12">
+            <div class="col-md-8  col-sm-12">
+                <section class="panel panel-default">
+                    <div class="panel-heading"><strong><span class="fa fa-th"></span> <span data-i18n="Transaction"></span> Transaction</strong></div>
+                    <div class="panel-info">
+                        <div >
+                            <div class="span gray-head">
+                                <span class="boldlabel">
+                                    <strong>Saving Overview</strong>
+                                </span>
+                            </div>
+                            <table class="table table-condensed" >
+                                <tr class="graybg">
+                                    <th>Account No.</th>
+                                    <th>Type</th>
+                                    <th>Balance</th>
+                                    <th>Action</th>
+                                 </tr>
+                                <tr class="pointer-main"
+                                    ng-repeat="loanaccount in loanAccounts| orderBy:'id':true | filter:isLoanNotClosed">
+                                     </tr>
+                            </table>
+                           
+                        </div>
+
+                    </div>
+
+            </div>
+
+            <div class="col-md-4  col-sm-12">
+                <section class="panel panel-default">
+                    <div class="panel-heading"><strong><span class="fa fa-th"></span> <span data-i18n="Detail"></span></strong></div>
+                    <div class="panel-info">
+                        <div class="text-center"> <h4><strong class="ng-binding">{{Name}}</strong></h4> </div>
+                        <img class="center-block" ng-src="{{Photo}}" alt="Avatar" height="120px" width="100px">
+                        <div align="center">
+                            <button type="button" class="btn btn-primary ng-scope" data-ng-click="uploadPic()"   data-toggle="tooltip" title="Upload Client Image">
+                                <i class="fa fa-upload"></i>
+                            </button>
+                            <button type="button" class="btn btn-primary ng-scope" data-ng-click="capturePic()"  data-toggle="tooltip" title="Capture Client Image">
+                                <i class="fa fa-camera"></i>
+                            </button>
+                            <button type="button" class="btn btn-primary ng-scope" data-ng-click="deletePic()" data-toggle="tooltip" title="Delete Client Image">
+                                <i class="fa fa-trash-o"></i>
+                            </button>
+                        </div>
+                        <table class="table-minified">
+                            <tbody>
+                                <tr><th>&nbsp;Member Code: </th><td class="padded-td"> {{MemberCode}}</td></tr>
+                                <tr><th>&nbsp;Gender: </th><td> {{Gender}}</td></tr>
+                                <tr><th>&nbsp;Age: </th><td> {{age}}</td></tr>
+                                <tr><th>&nbsp;Marital Status: </th><td> {{MaritalStatus}}</td></tr>
+                                <tr><th>&nbsp;Meeting Type: </th><td> {{MeetingType}}</td></tr>
+                                <tr><th>&nbsp;Education: </th><td> {{EducationLevel}}</td></tr>
+                                <tr><th>&nbsp;Address: </th><td> {{zone}} - {{district}} - {{vdc}}</td></tr>
+                                <tr><th>&nbsp;Tole: </th><td> {{Tole}}</td></tr>
+                                <tr><th>&nbsp;Ward No: </th><td> {{WardNo}}</td></tr>
+                                <tr><th>&nbsp;Mobile No: </th><td> {{MoobileNo}}</td></tr>
+                            </tbody>
+                        </table>
+
+
+                    </div>
+
+            </div>
+        </div>
+    </div>
+
+
+</div>
+
+<!-- modal -->
+
+<script type="text/ng-template" id="uploadpic.html">
+    <div class="modal-header silver">
+    <h3 class="bolder">Select Image</h3>
+    </div>
+    <div class="modal-body">
+    <div ng-show="imageCropStep == 1">		
+    <br/>
+    <input type="file" name="fileInput" id="fileInput" onchange="angular.element(this).scope().fileChanged(event)" />
+    </div>
+    <div class ="row" >
+    <div class="col-md-12" ng-show="imageCropStep == 2">
+
+    <image-crop			 
+    data-height="330"
+    data-width="300"
+    data-shape="square"
+    data-step="imageCropStep"
+    src="imgSrc"
+    data-result="result"
+    data-result-blob="resultBlob"
+    crop="initCrop"
+    padding="100"
+    max-size="512"
+    ></image-crop>			   
+
+    <br/>
+    <button ng-click="clear()">Cancel</button>
+    <button ng-click="initCrop = true">Crop</button>		
+    </div>
+    <div ng-show="imageCropStep == 3">
+
+    <img ng-src="{{result}}" ></img> 
+
+
+    </div>
+    </div> 
+    </div>
+    <div class="modal-footer">
+    <div ng-show="imageCropStep == 3">
+    <button class="btn btn-primary pull-left" ng-click="clear()">Clear</button>
+    </div>
+    <button class="btn btn-warning" ng-click="cancel()">Cancel</button>
+    <button class="btn btn-primary" ng-click="$root.upload(resultBlob)">Upload</button>
+    </div>
+</script>
+
+<script type="text/ng-template" id="capturepic.html">
+    <div class="modal-header silver" ng-init="loadPic()" >
+    <h3 class="bolder">Capture Image</h3>  
+    </div>
+    <div class="modal-body">
+    <div class="row">
+    <div class="col-md-12 " ng-show="imageCropStep == 1">
+    <video id="video" width="400" height="300" autoplay ></video>
+    </div>
+    <div class="col-md-12 ">
+    <canvas id="canvas"  width="330" height="300" hidden></canvas> 
+    <div ng-show="imageCropStep == 2">
+    <image-crop			 
+    data-height="330"
+    data-width="300"
+    data-shape="square"
+    data-step="imageCropStep"
+    src="picture"
+    data-result="result"
+    data-result-blob="resultBlob"
+    crop="initCrop"
+    padding="100"
+    max-size="512"
+
+    ></image-crop>		   
+
+    <br/>
+    <button ng-click="clear()">Cancel</button>
+    <button ng-click="initCrop = true">Crop</button>		
+    </div>
+    <div ng-show="imageCropStep == 3">
+
+    <img ng-src="{{result}}" ></img> 
+
+    </div>
+    </div> 
+    </div>
+    <div class="modal-footer">
+    <div ng-show="imageCropStep == 3">
+    <button class="btn btn-primary pull-left" ng-click="clear()">Clear</button>
+    </div>
+    <button id="snap" ng-hide="imageCropStep == 2 || imageCropStep == 3 " class="btn btn-warning pull-left" ng-click="takeScreenshot()">
+    <i class="fa fa-camera"></i>
+    Capture
+    </button>
+    <button class="btn btn-warning" ng-click="cancel()">Cancel</button>
+    <button class="btn btn-primary" ng-click="$root.upload(resultBlob)">Upload</button>
+
+    </div>
+
+</script>
+
+<script type="text/ng-template" id="deletePic.html">
+    <div class="modal-header silver">
+    <h3 class="bolder">Delete Image</h3>
+    </div>
+    <div class="modal-body">
+    <api-validate></api-validate>
+    <br>
+    <button class="btn btn-warning" ng-click="cancel()">Cancel</button>
+    <button class="btn btn-primary" ng-click="delete()">Delete</button>
+    </div>
+</script>
+

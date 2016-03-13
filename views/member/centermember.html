@@ -1,0 +1,54 @@
+<div ng-controller="CenterMemberCtrl as cm">
+    <div class="col-md-12">
+        <div class="col-md-6 col-sm-6">
+            <i class="fa fa-circle  statusactive"></i>
+            <i class="fa fa-map-marker"></i>
+            <strong class="ng-binding"> {{center}} </strong>
+            <small class="ng-binding">
+                <i class="fa fa-building-o"></i> {{office}}
+            </small>
+        </div>
+
+    </div>
+   
+    <div class="col-md-12">
+        <section class="panel panel-default">
+            <div class="panel-heading"><strong><span class="fa fa-th"></span> <span data-i18n="member"></span></strong></div>
+            <div class="panel-body">
+                <div class=" row form-inline">
+
+                    <div class="col-md-4 selectContainer pull-right">
+                        <select ng-model="status" class="form-control"  ng-change="StatusMember(status)" required>
+                            <option value="0" ng-selected="true">All</option>
+                            <option value="ACTIVE" >ACTIVE</option>
+                            <option value="DROPOUT" >DROPOUT</option>
+                            <option value="PASSIVE" >PASSIVE</option>
+                        </select>
+                        <button class=" btn btn-primary pull-right" ng-show="entry" ng-click="CreateMember(0)">
+                            <i class="icon-plus icon-white"></i> Create Member
+                        </button> 
+                    </div>
+                </div>
+                <table ng-table="cm.tableParams" class="table" show-filter="true">
+                    <tr style="cursor: pointer;" ng-repeat="member in $data" class="{{member.Status}}" ng-click="memberProfile(member.MemberID, selectedCenterID, selectedBranchID)">
+                        <td title="'Code'" filter="{ MemberCode: 'text'}" sortable="'MemberCode'" > {{member.MemberCode}}</td>
+                        <td title="'First Name'" filter="{ FirstName: 'text'}" sortable="'FirstName'">{{member.FirstName}}</td>
+                        <td title="'Last Name'" filter="{ LastName: 'text'}" sortable="'LastName'">{{member.LastName}}</td>
+                        <td title="'Spouse/Father'" filter="{ SpouseFather: 'text'}" sortable="'SpouseFather'"> {{member.SpouseFather}}</td>
+                        <td title="'Father In Law'" filter="{ FatherInLaw: 'text'}" sortable="'FatherInLaw'">{{member.FatherInLaw}}</td>
+                        <td title="'VDC'" filter="{ VdcName: 'text'}" sortable="'VdcName'">{{member.VdcName}}</td>
+                        <td title="'Status'" filter="{ Status: 'text'}" sortable="'Status'">{{member.Status}}</td>
+
+                    </tr>
+                </table>
+                <ul class="list-group">
+                    <li class="list-group-item">
+                        <span class="badge badge-danger">{{cm.tableParams.total()}}</span>
+                        Total Record 
+                    </li>
+                </ul>
+            </div>
+        </section>
+    </div>
+
+</div>

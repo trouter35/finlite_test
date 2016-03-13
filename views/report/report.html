@@ -1,0 +1,40 @@
+
+<div ng-controller="myController">
+    <div class="col-md-12">
+        <section class="panel panel-default">
+            <div class="panel-heading"><strong><span class="fa fa-th"></span> <span data-i18n="Report"> Report</span></strong></div>
+            <div class="panel-body">
+                
+        <label>Please select the month:</label>
+        <select ng-model="month" ng-change="callthat()">
+            <option value="01">Baisakh</option>
+            <option value="02">Jestha</option>
+            <option value="03">Ashar</option>
+            <option value="04">Shrawan</option>
+            <option value="05">Bhadra</option>
+            <option value="06">Ashwin</option>
+            <option value="07">Kartik</option>
+            <option value="08">Mangshir</option>
+            <option value="09">Paush</option>
+            <option value="10">Magh</option>
+            <option value="11">Falgun</option>
+            <option value="12">Chaitra</option>
+        </select>
+        <br><br>
+        <label>Please select the type of report:</label>
+        <select ng-model="reportType" ng-change="callThis()">
+            <option value="BwiseActiveMember">Branch wise Active Member</option>
+            <option value="BwiseBorrower">Branch wise Borrower</option>
+            <option value="BwiseCenter">Branch wise Center</option>
+            <option value="BwiseDropout">Branch wise Dropout</option>
+        </select>
+   
+    <div id="table"> </div>
+            </div>
+        </section>
+    </div>
+    <a href=''  ng-click="callPage()"> jhjjkhjhjkjjjjh </a>
+    
+ 
+</div>
+

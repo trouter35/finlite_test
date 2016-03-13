@@ -1,0 +1,58 @@
+<div class="page-signin" ng-show="Nstatus">
+    <div class="signin-header">
+        <div class="container text-center">
+            <div class="logo">
+                <a href="#/">
+                    <img src="img/finlite-logo.png" alt="" height="50">
+                    <!--span>{{main.brand}}</span--> 
+                </a>
+            </div>
+        </div>
+    </div>
+    <div class="main-body">
+        <div class="container">
+            <div class="form-container">
+
+                <div class="text-center" >  <strong> <span class="alert-danger">{{error}}</span> </strong> </div>
+
+                <form class="form-horizontal" ng-submit="login()">
+                    <fieldset>
+                        <div class="form-group">
+                            <div class="input-group input-group-lg">
+                                <span class="input-group-addon">
+                                    <span class="fa fa-user"></span>
+                                </span>
+                                <input class="form-control" id="inputUsername" placeholder="Username" type="text" required autofocus ng-model="username">
+                                <span ng-show="form.username.$dirty && form.username.$error.required" class="help-block">Username is required</span>
+                            </div>
+                        </div> <br>
+                        <div class="form-group">
+                            <div class="input-group input-group-lg">
+                                <span class="input-group-addon">
+                                    <span class="fa fa-lock"></span>
+                                </span>
+                                <input class="form-control" id="inputPassword" placeholder="Password" type="password" required autofocus ng-model="password">
+                                <span ng-show="form.password.$dirty && form.password.$error.required" class="help-block">Password is required</span>
+
+                            </div>
+                        </div><br>
+                       
+                        <div class="form-group">
+                            <button type="submit" class="btn btn-primary btn-lg btn-block" autofocus>Sign in</button>
+                        </div>
+                        <div class="form-group">
+                           <div class="alert-danger" style="text-align: center" ng-if="$root.errmsg">{{errmsg}}</div>
+                        </div>
+                        
+                    </fieldset>
+
+                </form>
+            </div>
+        </div>
+
+    </div>
+</div>
+
+<div class="container" ng-hide="Nstatus">
+    <h1> No Internet Connection </h1>
+</div>

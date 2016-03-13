@@ -1,0 +1,150 @@
+<div ng-controller="DashboardController">
+    <div class="col-md-12 col-sm-12 ">
+        <div class="col-md-3 col-sm-12">
+            <i class="fa fa-cloud fa-1x "></i>
+            <strong class="ng-binding ">Current Office:  {{office}}</strong>
+        </div>
+        <div class="col-md-3 col-sm-12 ">
+            <i class="fa fa-user fa-1x "></i>
+            <strong class="ng-binding ">Incharge: {{Incharge}}</strong>
+        </div>
+          <div class="col-md-3 col-sm-12 ">
+            <i class="fa fa-money fa-1x"></i>
+            <strong class="ng-binding ">Fiscal Year: {{fyear}}</strong>
+        </div>
+        <div class="col-md-3 col-sm-12">
+            <i class="fa fa-calendar fa-1x"></i> 
+            <strong class="ng-binding">Today: {{today}}</strong>
+        </div>
+    </div>
+    <br>
+    <section class=" panel-heading">
+        <div class="row ng-scope">
+            <div class="col-lg-3 col-sm-6">
+                   <div class="panel widget bg-primary">
+                    <div class="row row-table">
+                        <div class="col-xs-4 text-center bg-primary-dark pv-lg">
+                            <em class="fa fa-users fa-3x"></em>
+                        </div>
+                        <div class="col-xs-8 pv-lg">
+                            <div class="h2 mt0">{{ActiveMember}}</div>
+                            <div class="text-uppercase"><span data-i18n="Members"></span></div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="col-lg-3 col-sm-6">
+                <div class="panel widget bg-purple">
+                    <div class="row row-table">
+                        <div class="col-xs-4 text-center bg-purple-dark pv-lg">
+                            <em class="fa fa-money fa-3x"></em>
+                        </div>
+                        <div class="col-xs-8 pv-lg">
+                            <div class="h2 mt0">{{Borrower}}</div>
+                            <div class="text-uppercase"><span data-i18n="Borrowers"></span></div>
+                        </div>
+                    </div>       
+                </div>
+            </div>
+            <div class="col-lg-3 col-md-6">
+                <div class="panel widget bg-green">
+                    <div class="row row-table">
+                        <div class="col-xs-4 text-center bg-green-dark pv-lg">
+                            <em class="fa fa-arrow-circle-down fa-3x"></em>
+                        </div>
+                        <div class="col-xs-8 pv-lg">
+                            <div class="h2 mt0">{{DropMember}}</div>
+                            <div class="text-uppercase"><span data-i18n="Dropout"></span></div>
+                        </div>
+                    </div>      
+                </div>        
+            </div>
+            <div class="col-lg-3 col-md-6">
+                <div class="panel widget bg-danger-light">
+                    <div class="row row-table">
+                        <div class="col-xs-4 text-center bg-danger pv-lg">
+                            <em class="fa fa-archive fa-3x"></em>
+                        </div>
+                        <div class="col-xs-8 pv-lg">
+                            <div class="h2 mt0">{{Passive}}</div>
+                            <div class="text-uppercase"><span data-i18n="Passive"></span></div>
+                        </div>
+                    </div>      
+                </div>        
+            </div>
+        </div>
+    </section>
+    <div class="col-md-12">
+        <div class="col-md-4 col-sm-12">
+            <div class="col-md-12 panel panel-default" style="width: 100%; height: 300px;">
+                <div class="ng-isolate-scope" id='pie-saving' style="width: 100%; height: 300px;"></div>
+            </div>
+        </div>
+        <div class="col-md-4 col-sm-12">
+            <div class="col-md-12 panel panel-default" style="width: 100%; height: 300px;">
+                <div class="ng-isolate-scope" id='pie-loan' style="width: 100%; height: 300px;"></div>
+            </div>
+        </div>
+        <div class="col-md-4 col-sm-12">
+            <div class="col-md-12 panel panel-default" style="width: 100%; height: 300px;">
+                <div class="ng-isolate-scope" id='bar-balance' style="width: 100%; height: 300px;"></div>
+            </div>
+        </div>
+    </div>
+    <section class=" panel-heading">
+        <div class="row ng-scope">
+            <div class="col-lg-3 col-sm-6">
+                <div class="panel widget bg-pink-dark">
+                    <div class="row row-table">
+                        <div class="col-xs-4 text-center bg-pink-light pv-lg">
+                            <em class="fa fa-th fa-3x"></em>
+                        </div>
+                        <div class="col-xs-8 pv-lg">
+                            <div class="h2 mt0">{{Branches}}</div>
+                            <div class="text-uppercase"><span data-i18n="Branch"></span></div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="col-lg-3 col-sm-6">
+                <div class="panel widget bg-inverse-dark">
+                    <div class="row row-table">
+                        <div class="col-xs-4 text-center bg-inverse pv-lg">
+                            <em class="fa fa-user fa-3x"></em>
+                        </div>
+                        <div class="col-xs-8 pv-lg">
+                            <div class="h2 mt0">{{Staffs}}</div>
+                            <div class="text-uppercase"><span data-i18n="Staffs"></span></div>
+                        </div>
+                    </div>       
+                </div>
+            </div>
+            <div class="col-lg-3 col-md-6 col-sm-12">
+                <div class="panel widget bg-green">
+                    <div class="row row-table">
+                        <div class="col-xs-4 text-center bg-green-dark pv-lg">
+                            <em class="fa fa-chain fa-3x"></em>
+                        </div>
+                        <div class="col-xs-8 pv-lg">
+                            <div class="h2 mt0">{{FieldStaff}}</div>
+                            <div class="text-uppercase"><span data-i18n="Field Staff"></span></div>
+                        </div>
+                    </div>      
+                </div>        
+            </div>
+            <div class="col-lg-3 col-md-6 col-sm-12">
+                <div class="panel widget bg-yellow">
+                    <div class="row row-table">
+                        <div class="col-xs-4 text-center bg-yellow-light pv-lg">
+                            <em class="fa fa-chain fa-3x"></em>
+                        </div>
+                        <div class="col-xs-8 pv-lg">
+                            <div class="h2 mt0">{{Trainee}}</div>
+                            <div class="text-uppercase"><span data-i18n="Trainees"></span></div>
+                        </div>
+                    </div>      
+                </div>        
+            </div>
+        </div>
+    </section>
+</div>

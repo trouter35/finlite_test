@@ -1,0 +1,218 @@
+<div data-ng-controller="ProfileCtrl as pc">
+    <div class="col-md-12">
+        <div class="col-md-6">
+            <div class="panel panel-profile">
+                <div class="panel-heading text-center bg-info">
+                    <img alt="staff_image" src="{{photo}}" class="img-circle img80_80">
+                    <h3>{{name}}</h3>
+                    <p>{{position}}</p>                    
+                </div>
+                <div class="list-justified-container">
+                    <ul class="list-justified text-center">
+                        <li>
+                            <p class="size-h3">{{CitizenshipNo}}</p>
+                            <p class="text-muted">Citizenship No.</p>
+                        </li>
+                        <li>
+                            <p class="size-h3">A+</p>
+                            <p class="text-muted">Blood Group</p>
+                        </li>
+                        <li>
+                            <p class="size-h3">{{age}}</p>
+                            <p class="text-muted">Age</p>
+                        </li>
+                    </ul>
+                </div>
+            </div>
+            
+           
+           
+
+
+        </div>
+        <div class="col-md-6">
+ 
+            <div class="panel panel-default">
+                <div class="panel-heading"><strong><span class="glyphicon glyphicon-th"></span> Profile Info</strong></div>
+                <div class="panel-body">
+                    <div class="media">
+                        <div class="media-body">
+                            <ul class="list-unstyled list-info">
+                                <li>
+                                    <span class="icon glyphicon glyphicon-user"></span>
+                                    <label>Code</label>
+                                    {{ucode}}
+                                </li>
+                                <li>
+                                    <span class="icon glyphicon glyphicon-envelope"></span>
+                                    <label>Email</label>
+                                    {{email}}
+                                </li>
+                                <li>
+                                    <span class="icon glyphicon glyphicon-home"></span>
+                                    <label>Address</label>
+                                    {{address}}
+                                </li>
+                                <li>
+                                    <span class="icon glyphicon glyphicon-earphone"></span>
+                                    <label>Contact</label>
+                                    {{contact}}
+                                </li>
+                                <li>
+                                    <span class="icon glyphicon glyphicon-flag"></span>
+                                    <label>Marital Status</label>
+                                    {{married}}
+                                </li>
+                            </ul>
+
+                        </div>
+                    </div>
+                </div>
+            </div>
+          
+        </div>
+    </div>
+       <div class="col-md-12">
+           <div class="panel panel-default">
+                <div class="panel-heading"><strong><span class="glyphicon glyphicon-th"></span> Details</strong></div>
+                <div class="panel-body">
+                <div class="col-sm-3">
+                    <div class="panel mini-box">
+                        <span class="box-icon bg-danger">
+                            <i class="fa fa-th"></i>
+                        </span>
+                        <div class="box-info">
+                            <p class="size-h2">{{TotalCenter}}</p>
+                            <p class="text-muted">Total Center </p>
+                        </div>
+                    </div>                    
+                </div>
+                <div class="col-sm-3">
+                    <div class="panel mini-box">
+                        <span class="box-icon bg-warning">
+                            <i class="fa fa-camera"></i>
+                        </span>
+                        <div class="box-info">
+                            <p class="size-h2">{{ActiveMember}}</p>
+                            <p class="text-muted">Active Members</p>
+                        </div>
+                    </div>                    
+                </div>
+           
+                <div class="col-sm-3">
+                    <div class="panel mini-box">
+                        <span class="box-icon bg-success">
+                            <i class="glyphicon glyphicon-ban-circle"></i>
+                        </span>
+                        <div class="box-info">
+                            <p class="size-h2">{{DropMember}}</p>
+                            <p class="text-muted">Dropout Member</p>
+                        </div>
+                    </div>
+                </div>
+                <div class="col-sm-3">
+                    <div class="panel mini-box">
+                        <span class="box-icon bg-info">
+                            <i class="fa fa-rupee"></i>
+                        </span>
+                        <div class="box-info">
+                            <p class="size-h2">{{Borrower}}</p>
+                            <p class="text-muted">Borrower</p>
+                        </div>
+                    </div>
+                </div>
+             </div>
+           </div>
+       </div>
+     <div class="col-md-12">
+           <div class="panel panel-default">
+                <div class="panel-heading"><strong><span class="glyphicon glyphicon-th"></span> Details</strong></div>
+                <div class="panel-body">
+                <div class="col-sm-3">
+                    <div class="panel mini-box">
+                        <span class="box-icon bg-danger">
+                            <i class="fa fa-th"></i>
+                        </span>
+                        <div class="box-info">
+                            <p class="size-h2">{{PGTCount}}</p>
+                            <p class="text-muted">Total PGT </p>
+                        </div>
+                    </div>                    
+                </div>
+                <div class="col-sm-3">
+                    <div class="panel mini-box">
+                        <span class="box-icon bg-warning">
+                            <i class="fa fa-camera"></i>
+                        </span>
+                        <div class="box-info">
+                            <p class="size-h2">{{GRTCount}}</p>
+                            <p class="text-muted">Total GRT</p>
+                        </div>
+                    </div>                    
+                </div>
+           
+                <div class="col-sm-3">
+                    <div class="panel mini-box">
+                        <span class="box-icon bg-success">
+                            <i class="glyphicon glyphicon-ban-circle"></i>
+                        </span>
+                        <div class="box-info">
+                            <p class="size-h2">{{ApprovedCount}}</p>
+                            <p class="text-muted">Total Approved</p>
+                        </div>
+                    </div>
+                </div>
+                <div class="col-sm-3">
+                    <div class="panel mini-box">
+                        <span class="box-icon bg-info">
+                            <i class="fa fa-rupee"></i>
+                        </span>
+                        <div class="box-info">
+                            <p class="size-h2">{{}}</p>
+                            <p class="text-muted"></p>
+                        </div>
+                    </div>
+                </div>
+             </div>
+           </div>
+       </div>
+
+      <div class="col-md-12">
+                <div class="col-md-6">
+                    <section class="panel panel-default">
+                        <div class="panel-heading"><strong><span class="fa fa-th"></span> <span data-i18n="Job History">Job History</span></strong></div>
+                        <div class="panel-body">
+                            <table ng-table="pc.tableParams1" class="table" show-filter="true">
+                                <tr style="cursor: pointer;" ng-repeat="job in $data" ng-click="">
+                                    <td title="'Date'"  sortable="'SaveDate'" > {{job.SaveDate}}</td>
+                                    <td title="'Office'"  sortable="'Name'">{{job.Name}}</td>
+                                    <td title="'Designation'"  sortable="'PositionName'"> {{job.PositionName}}</td>
+                                    <td title="'Responsibilty'"  sortable="'JobType'">{{job.JobType}}</td>
+                                </tr>
+                            </table>
+
+                        </div>
+                    </section>
+                </div>
+        
+
+                <div class="col-md-6">
+                    <section class="panel panel-default">
+                        <div class="panel-heading"><strong><span class="fa fa-th"></span> <span data-i18n="Academic Details">Academic Details</span></strong></div>
+                        <div class="panel-body">
+                            <table ng-table="pc.tableParams" class="table" show-filter="true">
+                                <tr style="cursor: pointer;" ng-repeat="academic in $data" ng-click="">
+                                    <td title="'Level'"  sortable="'Code'" > {{academic.ALEVEL}}</td>
+                                    <td title="'Institution'"  sortable="'Name'">{{academic.INSTITUTION}}</td>
+                                    <td title="'Board'" sortable="'Location'"> {{academic.BOARD}}</td>
+                                    <td title="'Division'"  sortable="'PhoneNo'">{{academic.DIVISION}}</td>
+                                </tr>
+                            </table>
+
+                        </div>
+                    </section>
+                </div>
+          
+      </div>
+
+</div>

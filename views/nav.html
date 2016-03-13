@@ -1,0 +1,12 @@
+<div id="nav-wrapper" data-nice-scroll>
+    <div id="nav-wrapper">
+        <ul id="nav"
+            data-ng-controller="NavCtrl"
+            data-collapse-nav
+            data-highlight-active>
+            <li class="" ng-repeat="menu in menus"  ng-click="getDetail($index, menu.menu);" ng-class="{'active': ($index == $root.navSel)}">
+                 <a href=""><i class={{menu.ic}}></i><span data-i18n="{{menu.menu}}"></span> </a></li>
+        </ul>
+    </div>
+</div>
+

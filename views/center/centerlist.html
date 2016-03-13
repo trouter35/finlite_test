@@ -1,0 +1,49 @@
+<div ng-controller="CenterListController as cc">
+    <div class="col-md-12">
+        <section class="panel panel-default">
+            <div class="panel-heading"><strong><span class="fa fa-th"></span> <span data-i18n="center"></span></strong></div>
+            <div class="panel-body">
+                <div class="form-inline">
+                    <button class=" btn btn-primary pull-right" ng-show="entry" ng-click="CreateCenter(selectedOption)">
+                        <i class="icon-plus icon-white"></i> Create Center
+                    </button>
+                    <div class="col-md-5 selectContainer">
+                        <ui-select name="officelist" ng-model="selectedOption" theme="select2" style="min-width: 300px; "  ng-change="bWiseCenter(selectedOption,Active)" >
+                            <ui-select-match placeholder="Select or search branch">{{selectedOption.Name}}</ui-select-match>
+                            <ui-select-choices repeat="office in offices| propsFilter: {Code: $select.search, Name: $select.search}" >
+                                <div ng-bind-html="office.Name | highlight: $select.search"></div>
+                                <small>
+                                    Code: <span ng-bind-html="''+office.Code | highlight: $select.search"></span>
+                                </small>
+                            </ui-select-choices>
+                        </ui-select>
+                    </div>
+                    
+                    <div class="col-md-5 selectContainer">
+                        <select ng-model="Active" class="form-control"  ng-change="bWiseCenter(selectedOption,Active)" required>
+                            <option value="0" ng-selected="true">All</option>
+                            <option value="Y" >Active</option>
+                            <option value="N" >Dissolve</option>
+                        </select>
+                    </div>
+                </div>
+                <table ng-table="cc.tableParams" class="table" show-filter="true">
+                    <tr style="cursor: pointer;" ng-repeat="center in $data" class="{{center.Active}}" ng-click="memberList(selectedOption, center)">
+                        <td title="'Code'" filter="{ CenterCode: 'text'}" sortable="'CenterCode'" > {{center.CenterCode}}</td>
+                        <td title="'Name'" filter="{ CenterName: 'text'}" sortable="'CenterName'">{{center.CenterName}}</td>
+                        <td title="'VDC Name'" filter="{ VdcName: 'text'}" sortable="'VdcName'"> {{center.VdcName}}</td>
+                        <td title="'Meeting Place'" filter="{ MeetingPlace: 'text'}" sortable="'MeetingPlace'">{{center.MeetingPlace}}</td>
+                        <!--   <td title="'Active'" filter="{ Active: 'text'}" sortable="'Active'"><i class="fa fa-stop {{center.Active}}"></i>&nbsp;{{center.Active}}</td>
+                        -->
+                    </tr>
+                </table>
+                <ul class="list-group">
+                    <li class="list-group-item">
+                        <span class="badge badge-danger">{{cc.tableParams.total()}}</span>
+                        Total Record 
+                    </li>
+                </ul>
+            </div>
+        </section>
+    </div>
+</div>
